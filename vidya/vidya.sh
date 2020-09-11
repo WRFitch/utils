@@ -8,7 +8,14 @@ USR_GAMES_DIR=~/Documents/games
 SUPPORTED_GAMES="
 celeste
 quake
-Battle Royale TV (brtv)"
+art_sqool
+A Short Hike (hike)
+
+YAHTZEE'S DEV DIARY
+Battle Royale TV (brtv)
+The Life of Erich Zann (ezann)
+Casey Joint (leethax)
+Bunker Bustin (bunkerbustin)"
 
 show_help(){
 	echo "vidya steam - open steam" 
@@ -19,21 +26,40 @@ Game commands are given in brackets if the game title is longer than a word."
 
 select_game(){
 	if [ -z "$GAME" ]; then show_help; return; fi
-
-	echo "$GAME"
-
-	if [ $GAME == "steam" ]; then 
+	
+	case $GAME in 
+	"steam")
 		steam
-	elif [ $GAME == "quake" ]; then
+		;;
+	"celeste")
+                $USR_GAMES_DIR/celeste-linux/Celeste
+                ;;
+	"quake")
 		quakespasm -basedir $STEAM_APPS_DIR/common/Quake
-	elif [ $GAME == 'celeste' ]; then 
-		$USR_GAMES_DIR/celeste-linux/Celeste
-	elif [ $GAME == "brtv" ]; then 
+		;;
+	"art_sqool")
+		wine $USR_GAMES_DIR/art_sqool/ART\ SQOOL.exe
+		;;
+	"hike")
+		$USR_GAMES_DIR/AShortHike/AshortHike.x86_64
+		;;
+	"brtv")
 		wine $USR_GAMES_DIR/devdiary/brtv/devdiary2.exe
-	else 
+		;;
+	"ezann")
+		wine $USR_GAMES_DIR/devdiary/ezann/devdiary4.exe
+		;;
+	"leethax")
+		wine $USR_GAMES_DIR/devdiary/leethax/devdiary8.exe
+		;;
+	"bunkerbustin")
+		wine $USR_GAMES_DIR/devdiary/bunkerbustin/devdiary12.exe
+		;;
+	*)
 		show_help
-	fi
+		;;
+	esac
 }
 
-echo "$GAME"
 select_game
+
